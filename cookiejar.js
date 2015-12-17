@@ -118,9 +118,14 @@
     };
 
     Cookie.prototype.matches = function matches(access_info) {
-        if (this.noscript && access_info.script ||
+        if (
+            access_info &&
+            (
+                this.noscript && access_info.script ||
                 this.secure && !access_info.secure ||
-                !this.collidesWith(access_info)) {
+                !this.collidesWith(access_info)
+            )
+        ) {
             return false;
         }
         return true;
